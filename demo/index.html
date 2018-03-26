@@ -6,6 +6,11 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
   <title>flowers-social-login demo</title>
+  <script>
+      // Force all polyfills on
+      if (window.customElements) window.customElements.forcePolyfill = true;
+      ShadyDOM = { force: true };
+    </script>
 
   <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
 
@@ -28,31 +33,24 @@
       </template>
     </demo-snippet>
   </div>
-
+  <div id="fb-root"></div>
   <script>
-    window.fbAsyncInit = function () {
-      FB.init({
-        appId: '2028895470681066',
-        cookie: true,
-        xfbml: true,
-        version: 'v2.12'
-      });
-
-      FB.AppEvents.logPageView();
-
-      FB.getLoginStatus(function (response) {
-        statusChangeCallback(response);
-      });
-    };
-
     (function (d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) { return; }
-      js = d.createElement(s); js.id = id;
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
       js.src = "https://connect.facebook.net/en_US/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
+    function checkLoginState() {
+      FB.getLoginStatus(function (response) {
+        console.log(response);
+      });
+    }
   </script>
 </body>
 

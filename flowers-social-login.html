@@ -7,7 +7,8 @@
         display: block;
       }
     </style>
-    <h2>Hello [[prop1]]!</h2>
+    <h2>Hello</h2>
+    <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
   </template>
 
   <script>
@@ -26,7 +27,28 @@
           prop1: {
             type: String,
             value: 'flowers-social-login'
+          },
+          fbInit: {
+            type: Object,
+            value: {
+              appId: '2028895470681066',
+              cookie: true,
+              xfbml: true,
+              version: 'v2.12'
+            }
           }
+        };
+      }
+
+      ready() {
+        super.ready();
+        let _this = this;
+        window.fbAsyncInit = function () {
+          FB.init(_this.fbInit);
+          FB.AppEvents.logPageView();
+          FB.getLoginStatus(function (response) {
+            console.log(response);
+          });
         };
       }
     }

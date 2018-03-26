@@ -1,0 +1,36 @@
+<link rel="import" href="bower_components/polymer/polymer-element.html">
+
+<dom-module id="flowers-social-login">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * `flowers-social-login`
+     * Social login ability for 1800flowers website
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class FlowersSocialLogin extends Polymer.Element {
+      static get is() { return 'flowers-social-login'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'flowers-social-login'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(FlowersSocialLogin.is, FlowersSocialLogin);
+  </script>
+</dom-module>
